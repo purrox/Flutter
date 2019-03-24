@@ -20,11 +20,11 @@ List<Repos> parseRepos(String responseBody) {
 }
 
 //Method in charge of load user information.
-Future<List<Repos>> fetchGitHubUserRepos() async {
-  final response = await http.get('https://api.github.com/users/purrox/repos');
+Future<List<Repos>> fetchGitHubUserRepos(String user) async {
+  final response = await http.get('https://api.github.com/users/$user/repos?client_id=3b8618525a6b4b91b45b&client_secret=995703f4c18194f1453dc933848625fd25a03962');
   if (response.statusCode == 200) {
     return parseRepos(response.body);
   } else {
-    throw Exception('Failed to load User');
+    throw Exception('Failed to load Repos');
   }
 }
